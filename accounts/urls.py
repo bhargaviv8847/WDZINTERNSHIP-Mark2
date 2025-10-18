@@ -1,8 +1,14 @@
+# backend/urls.py
+from django.urls import path, re_path
 from django.contrib import admin
-from django.urls import path
 from accounts import views
+from .views import FrontendAppView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/', views.register_user, name='register'),
+    path('login/', views.login_user, name='login'),
+
+    # Catch all other paths and serve React frontend
+    re_path(r'^.*$', FrontendAppView.as_view(), name='frontend'),
 ]
