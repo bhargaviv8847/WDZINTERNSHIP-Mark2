@@ -120,4 +120,4 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",  # keep for local dev
 ]
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
