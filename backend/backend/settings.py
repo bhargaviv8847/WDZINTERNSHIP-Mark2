@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'corsheaders',
 
     # Your custom apps
-    'courses',
     'accounts',
 ]
 
