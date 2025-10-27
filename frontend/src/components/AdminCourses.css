@@ -1,0 +1,189 @@
+/* === Full Page Setup === */
+.admin-page {
+  min-height: 100vh;
+  width: 100%;
+ 
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: blur(10px);
+}
+
+/* === Header === */
+.admin-header {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.admin-header h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+}
+
+.admin-header p {
+  font-size: 1.1rem;
+  color: #eaeaea;
+}
+
+/* === Main Layout === */
+.admin-main {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  padding: 40px 80px;
+  flex-wrap: wrap;
+}
+
+/* === Left Form === */
+.admin-form {
+  flex: 0.35;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 30px;
+  border-radius: 20px;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.admin-form input,
+.admin-form textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  margin-bottom: 12px;
+  font-size: 15px;
+  color: #000;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #2563eb, #22c55e);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s ease;
+}
+
+.submit-btn:hover {
+  transform: scale(1.03);
+}
+
+/* === Courses Grid === */
+.admin-courses {
+  flex: 0.6;
+  background: rgba(255, 255, 255, 0.12);
+  padding: 30px;
+  border-radius: 20px;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  overflow-y: auto;
+  max-height: 80vh;
+}
+
+.admin-courses h2 {
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+/* === Each Course Card === */
+.course-card {
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 15px;
+  padding: 18px;
+  color: #000;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.3s ease;
+}
+
+.course-card:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.6);
+}
+
+/* === Info === */
+.course-info h3 {
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.course-info .level {
+  color: #444;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.course-info .desc {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.course-info .meta {
+  font-size: 13px;
+  color: #444;
+}
+
+/* === Buttons === */
+.course-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.course-actions button {
+  width: 48%;
+  padding: 10px 0;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.edit-btn {
+  background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+}
+
+.delete-btn {
+  background: linear-gradient(90deg, #ef4444, #b91c1c);
+}
+
+.edit-btn:hover,
+.delete-btn:hover {
+  transform: scale(1.05);
+}
+
+/* === Responsive === */
+@media (max-width: 1000px) {
+  .admin-main {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .admin-form,
+  .admin-courses {
+    width: 100%;
+  }
+
+  .course-grid {
+    grid-template-columns: 1fr;
+  }
+}

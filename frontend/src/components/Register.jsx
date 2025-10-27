@@ -8,7 +8,7 @@ export default function Register() {
     email: "",
     password: "",
   });
-  const [status, setStatus] = useState({ message: "", type: "" });
+
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -17,50 +17,27 @@ export default function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setStatus({ message: "🔵 Checking user availability...", type: "info" });
 
     try {
       const response = await fetch("http://127.0.0.1:8000/register/", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify(formData),
       });
 
       const data = await response.json();
 
       if (response.ok) {
-        // Simulate checking if the user already exists
-        if (data.exists) {
-          setStatus({
-            message: "🔴 Username already exists. Please try another.",
-            type: "error",
-          });
-        } else {
-          setStatus({
-            message: "🟢 Registration successful! Redirecting...",
-            type: "success",
-          });
-          setTimeout(() => navigate("/login"), 1500);
-        }
+        alert("✅ Registration successful! Please log in.");
+        navigate("/login", { replace: true }); // Redirect to login
       } else {
-        // Handles duplicate username/email from backend response
-        if (data.message?.toLowerCase().includes("exists")) {
-          setStatus({
-            message: "🔴 Username or email already registered!",
-            type: "error",
-          });
-        } else {
-          setStatus({
-            message: "🔴 Registration failed. Please try again.",
-            type: "error",
-          });
-        }
+        alert(data.message || "❌ Registration failed. Try again.");
       }
-    } catch {
-      setStatus({
-        message: "⚠️ Server unreachable. Please try again later.",
-        type: "error",
-      });
+    } catch (error) {
+      alert("Backend not reachable!");
+      console.error("Error:", error);
     }
   };
 
@@ -91,12 +68,6 @@ export default function Register() {
         />
         <button type="submit">Register</button>
       </form>
-
-      {status.message && (
-        <div className={`status-message ${status.type}`}>
-          {status.message}
-        </div>
-      )}
 
       <p>
         Already have an account?{" "}

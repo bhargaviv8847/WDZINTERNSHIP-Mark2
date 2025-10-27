@@ -1,0 +1,101 @@
+.course-detail-bg {
+  min-height: 100vh;
+  width: 100%;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+  padding: 30px;
+}
+
+/* === Main Card === */
+.course-detail-card {
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 20px;
+  padding: 50px;
+  max-width: 700px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.course-detail-card:hover {
+  transform: translateY(-5px);
+}
+
+/* === Title & Description === */
+.course-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 15px;
+}
+
+.course-desc {
+  font-size: 1.1rem;
+  color: #333;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+/* === Info Boxes === */
+.course-info {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 35px;
+}
+
+.info-box {
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 12px;
+  padding: 12px 18px;
+  font-size: 1rem;
+  color: #111;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+.info-box:hover {
+  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+/* === Enroll Button === */
+.enroll-btn {
+  background: linear-gradient(90deg, #22c55e, #16a34a);
+  border: none;
+  color: white;
+  padding: 14px 0;
+  border-radius: 12px;
+  width: 100%;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.enroll-btn:hover {
+  background: linear-gradient(90deg, #16a34a, #15803d);
+  transform: scale(1.03);
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.4);
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  .course-detail-card {
+    padding: 30px 20px;
+  }
+
+  .course-info {
+    flex-direction: column;
+    gap: 15px;
+  }
+}

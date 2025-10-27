@@ -1,50 +1,139 @@
-body {
+/* Background setup */
+body,
+html {
+  height: 100%;
   margin: 0;
   font-family: "Poppins", sans-serif;
-  background: url("https://images.unsplash.com/photo-1587613865763-4ce0a3d0b8e2?auto=format&fit=crop&w=1920&q=80")
-    no-repeat center center fixed;
-  background-size: cover;
+}
+/* Kill any extra box: keep only the .dashboard-card */
+.dashboard-container > div:not(.dashboard-card) { 
+  display: none !important; 
+}
+
+.dashboard-container {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  background: url("https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1920&q=80")
+    no-repeat center center / cover;
   position: relative;
 }
 
-body::before {
+/* Dark overlay for smooth lighting */
+.dashboard-container::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  backdrop-filter: blur(8px) brightness(0.9);
-  background-color: rgba(255, 255, 255, 0.1);
-  z-index: 0;
-}
-
-.dashboard-container {
-  position: relative;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(4px);
   z-index: 1;
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(10px);
-  padding: 50px 60px;
-  border-radius: 25px;
-  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
+}
+
+/* ✅ The only box that remains */
+.dashboard-card {
+  position: relative;
+  z-index: 2;
+  width: 420px;
+  padding: 50px 40px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  border-radius: 18px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
   text-align: center;
-  width: 90%;
-  max-width: 550px;
-  color: #333;
+  color: white;
+  animation: fadeIn 0.8s ease;
 }
 
-.dashboard-container h1 {
-  font-size: 30px;
+/* Avatar Circle */
+.avatar {
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
+  width: 85px;
+  height: 85px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: 600;
+  color: white;
+  margin: 0 auto 25px;
+}
+
+/* Heading and Username */
+.dashboard-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.username {
+  color: #ffd86f;
   font-weight: 700;
-  margin-bottom: 10px;
-  color: #2d2d2d;
 }
 
-.dashboard-container p {
-  font-size: 17px;
-  color: #555;
+/* Subheading */
+.dashboard-subtitle {
+  font-size: 1rem;
+  color: #e0e0e0;
+  margin-top: 8px;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+/* Buttons */
+.dashboard-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+  color: white;
+}
+
+.view-btn {
+  background: linear-gradient(90deg, #0072ff, #00c6ff);
+}
+
+.logout-btn {
+  background: linear-gradient(90deg, #ff512f, #dd2476);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}
+
+/* Smooth appearance */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.btn-manage {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+.btn-manage:hover {
+  background-color: #0056b3;
 }

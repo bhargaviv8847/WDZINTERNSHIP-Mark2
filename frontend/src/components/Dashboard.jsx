@@ -1,35 +1,41 @@
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./Dashboard.css";
+import { Link } from "react-router-dom";
 
 export default function Dashboard() {
+  const username = localStorage.getItem("username") || "User";
   const navigate = useNavigate();
-  const username = localStorage.getItem("username");
 
   const handleLogout = () => {
+    localStorage.removeItem("token");
     localStorage.removeItem("username");
     navigate("/login");
   };
 
   return (
-    <div className="dashboard-container">
-      <h1>Welcome, {username || "User"} 👋</h1>
-      <p>Your space to focus, learn, and grow efficiently.</p>
+    <div className="dashboard-card">
+      <div className="avatar">{username.charAt(0).toUpperCase()}</div>
 
-      <button
-        onClick={handleLogout}
-        style={{
-          marginTop: "25px",
-          padding: "10px 25px",
-          borderRadius: "10px",
-          border: "none",
-          background: "linear-gradient(90deg, #6b9dfc, #8ac5ff)",
-          color: "#fff",
-          fontWeight: "600",
-          cursor: "pointer",
-        }}
-      >
-        Logout
-      </button>
+      <h2 className="dashboard-title">
+        Welcome back, <span className="username">{username}</span> 👋
+      </h2>
+<Link to="/admin/courses" className="btn-manage">
+  Manage Courses
+</Link>
+
+      <p className="dashboard-subtitle">
+        Manage your learning, explore your courses, and track your growth.
+      </p>
+
+      <div className="dashboard-actions">
+        <button className="btn view-btn" onClick={() => navigate("/courses")}>
+          📚 View Courses
+        </button>
+        <button className="btn logout-btn" onClick={handleLogout}>
+          🚪 Logout
+        </button>
+      </div>
     </div>
   );
 }
