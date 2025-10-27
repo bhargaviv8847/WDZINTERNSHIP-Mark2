@@ -1,12 +1,21 @@
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth import authenticate
-from django.contrib.auth import get_user_model
+from django.contrib.auth import authenticate, get_user_model
 import json
+
+from rest_framework.authtoken.models import Token
 
 User = get_user_model()
 
 
+
+
+User = get_user_model()
+
+
+# ==========================
+# ✅ REGISTER USER
+# ==========================
 @csrf_exempt
 def register_user(request):
     if request.method == 'POST':
@@ -23,6 +32,9 @@ def register_user(request):
             # Create the user
             user = User.objects.create_user(username=username, email=email, password=password)
 
+            # Automatically generate token
+            Token.objects.create(user=user)
+
             return JsonResponse({'message': 'User registered successfully'}, status=201)
 
         except Exception as e:
@@ -31,6 +43,9 @@ def register_user(request):
     return JsonResponse({'message': 'Invalid request method'}, status=405)
 
 
+# ==========================
+# ✅ LOGIN USER
+# ==========================
 @csrf_exempt
 def login_user(request):
     if request.method == 'POST':
@@ -42,8 +57,11 @@ def login_user(request):
             user = authenticate(username=username, password=password)
 
             if user is not None:
+                # Get or create token for the authenticated user
+                token, _ = Token.objects.get_or_create(user=user)
                 return JsonResponse({
                     'message': 'Login successful',
+                    'token': token.key,
                     'user_id': user.id,
                     'username': user.username
                 }, status=200)
@@ -54,3 +72,6 @@ def login_user(request):
             return JsonResponse({'message': f'Error: {str(e)}'}, status=500)
 
     return JsonResponse({'message': 'Invalid request method'}, status=405)
+
+
+

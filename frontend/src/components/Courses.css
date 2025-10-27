@@ -1,0 +1,114 @@
+/* === Background Blur === */
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1920&q=80")
+    no-repeat center center/cover;
+  filter: blur(10px) brightness(0.75);
+  z-index: -1;
+}
+
+/* === Wrapper === */
+.courses-wrapper {
+  min-height: 100vh;
+  padding: 60px 100px;
+  color: white;
+  text-align: center;
+}
+
+.page-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 50px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* === Grid with 2 Rows === */
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-rows: repeat(2, auto);
+  gap: 30px;
+  justify-items: center;
+  align-items: center;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* === Course Card === */
+.course-box {
+  width: 220px;
+  height: 180px;
+  background: white;
+  color: #222;
+  border-radius: 18px;
+  position: relative;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease;
+}
+
+.course-box:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* === Number Badge === */
+.course-rank {
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  width: 45px;
+  height: 45px;
+  background: #ffb100;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 700;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* === Course Title === */
+.course-box h3 {
+  margin-top: 70px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #222;
+}
+
+/* === Color Variations === */
+.box-1 .course-rank { background: #ffb100; }
+.box-2 .course-rank { background: #ff6a00; }
+.box-3 .course-rank { background: #e94e77; }
+.box-4 .course-rank { background: #00b4d8; }
+.box-5 .course-rank { background: #6a4c93; }
+.box-6 .course-rank { background: #00a896; }
+.box-7 .course-rank { background: #8338ec; }
+.box-8 .course-rank { background: #ffd166; color: #333; }
+.box-9 .course-rank { background: #ef233c; }
+.box-10 .course-rank { background: #ff9f1c; }
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  .courses-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .course-box {
+    width: 180px;
+    height: 150px;
+  }
+}
