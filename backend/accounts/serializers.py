@@ -2,14 +2,12 @@ from rest_framework import serializers
 from .models import Account, Video
 
 
-# -------------------- Account Serializer --------------------
 class AccountSerializer(serializers.ModelSerializer):
     class Meta:
         model = Account
         fields = '__all__'
 
 
-# -------------------- Video Serializer --------------------
 class VideoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Video
@@ -27,3 +25,4 @@ class VideoSerializer(serializers.ModelSerializer):
         if content_type not in valid_types:
             raise serializers.ValidationError("Unsupported file type.")
         return value
+
