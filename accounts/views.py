@@ -4,11 +4,23 @@ from django.contrib.auth import authenticate
 from django.contrib.auth import get_user_model
 from .models import Course
 from .serializers import CourseSerializer
+from .models import Video
+from .serializers import VideoSerializer
+
 import json
 
 class CourseViewSet(viewsets.ModelViewSet):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
+
+
+class VideoUploadView(generics.CreateAPIView):
+    queryset = Video.objects.all()
+    serializer_class = VideoSerializer
+
+class VideoListView(generics.ListAPIView):
+    queryset = Video.objects.all()
+    serializer_class = VideoSerializer
 
 User = get_user_model()
 
